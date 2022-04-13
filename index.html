@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+	   <meta charset="utf-8"/>
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>        
+        
+        <!-- Load the phaser library -->
+    	<script src="phaser.js"></script>
+        
+        <!-- Load extra math functions -->
+        <script src="src/extra_math.js"></script>
+        
+        <!-- Load our game scripts -->
+        <script src="src/game_instance.js"></script>
+    	<script src="src/boot.js"></script>
+		<script src="src/preload.js"></script>
+		<script src="src/gametitle.js"></script>
+		<script src="src/gameplay_single.js"></script>
+        <script src="src/gameplay_dual.js"></script>
+		<script src="src/gameover.js"></script>	
+        <script src="src/highscore.js"></script>
+        
+        <!-- Not sure what this is good for, but keep for now... -->
+    		<style>
+    			body{margin:0}
+    		</style>
+        
+        <!-- Create a new game and add the states defined by the scripts, then start -->
+		<script>
+			(function() {
+				var game = new Phaser.Game(1000, 600, Phaser.CANVAS, "game");
+				game.state.add("Boot",boot);
+				game.state.add("Preload",preload);
+				game.state.add("GameTitle",gameTitle);
+				game.state.add("GameSingle",gameSingle);
+                game.state.add("GameDual",gameDual);
+				game.state.add("GameOver",gameOver);
+                game.state.add("HighScore",highScore);
+				game.state.start("Boot");
+			})();    
+		</script>
+    </head>
+    <body>
+        <!-- A centered container for the game -->
+        <div id="game" align="center"></div>
+    </body>
+</html>
