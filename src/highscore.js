@@ -104,30 +104,31 @@ highScore.prototype = {
             // Store the opened database object in the db variable. This is used a lot below
             db = openRequest.result;
 
+            // Open our object store and then get a cursor - which iterates through all the
+            // different data items in the store
+            const objectStore = db.transaction('highscores_os').objectStore('highscores_os');
+            objectStore.openCursor().addEventListener('success', e => {
+                // Get a reference to the cursor
+                const cursor = e.target.result;
+    
+                // If there is still another data item to iterate through, keep running this code
+                if(cursor) {
+                    scores.push([
+                        cursor.value.name,
+                        cursor.value.rate,
+                        cursor.value.guessed,
+                        cursor.value.ww,
+                        cursor.value.score,
+                    ])
+                    // Iterate to the next item in the cursor
+                    cursor.continue();
+                }
+                scoresReady = true;
+            });
+
             scoresReady = true;
         });
 
-        // Open our object store and then get a cursor - which iterates through all the
-        // different data items in the store
-        const objectStore = db.transaction('highscores_os').objectStore('highscores_os');
-        objectStore.openCursor().addEventListener('success', e => {
-            // Get a reference to the cursor
-            const cursor = e.target.result;
-
-            // If there is still another data item to iterate through, keep running this code
-            if(cursor) {
-                scores.push([
-                    cursor.value.name,
-                    cursor.value.rate,
-                    cursor.value.guessed,
-                    cursor.value.ww,
-                    cursor.value.score,
-                ])
-                // Iterate to the next item in the cursor
-                cursor.continue();
-            }
-            scoresReady = true;
-        });
     },
     
     writescores: function() {
