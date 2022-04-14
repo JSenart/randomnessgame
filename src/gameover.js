@@ -166,35 +166,35 @@ gameOver.prototype = {
     
     update: function () {
         //If the escape key has been pressed terminate game
-        if(escKey.justDown){
+        if(escKey.justDown || enterKey.justDown || zeroKeyLeft.justDown || oneKeyLeft.justDown || zeroKeyRight.justDown || oneKeyRight.justDown){
             //Terminate game
             this.terminate();
         }   
         //If another key has been pressed, ask if the player wants to store the score
-        if(enterKey.justDown || zeroKeyLeft.justDown || oneKeyLeft.justDown || zeroKeyRight.justDown || oneKeyRight.justDown){
-            //Prompt for name
-            var nameLeft = prompt("Stocker le score de Player One?","John Doe");
-            var nameRight = null;
-            if(gametype=='dual'){nameRight = prompt("Stocker le score de Player Two?","John Doe");}
+        // if(enterKey.justDown || zeroKeyLeft.justDown || oneKeyLeft.justDown || zeroKeyRight.justDown || oneKeyRight.justDown){
+        //     //Prompt for name
+        //     var nameLeft = prompt("Stocker le score de Player One?","John Doe");
+        //     var nameRight = null;
+        //     if(gametype=='dual'){nameRight = prompt("Stocker le score de Player Two?","John Doe");}
             
-            //Hard code a max name length
-            var maxName = 25;
+        //     //Hard code a max name length
+        //     var maxName = 25;
             
-            //Store the scores
-            if(nameLeft!=null) {
-                nameLeft = nameLeft.substr(0,maxName);
-                // this.savescore(nameLeft,rateLeft,fracLeft,indepLeft,scoreLeft,rndnumsLeft)
-                this.savescorelocally(nameLeft,rateLeft,fracLeft,indepLeft,scoreLeft,rndnumsLeft)
-            }
-            if(nameRight!=null) {
-                nameRight = nameRight.substr(0,maxName);
-                // this.savescore(nameRight,rateRight,fracRight,indepRight,scoreRight,rndnumsRight)
-                this.savescorelocally(nameRight,rateRight,fracRight,indepRight,scoreRight,rndnumsRight)
-            }
+        //     //Store the scores
+        //     if(nameLeft!=null) {
+        //         nameLeft = nameLeft.substr(0,maxName);
+        //         // this.savescore(nameLeft,rateLeft,fracLeft,indepLeft,scoreLeft,rndnumsLeft)
+        //         this.savescorelocally(nameLeft,rateLeft,fracLeft,indepLeft,scoreLeft,rndnumsLeft)
+        //     }
+        //     if(nameRight!=null) {
+        //         nameRight = nameRight.substr(0,maxName);
+        //         // this.savescore(nameRight,rateRight,fracRight,indepRight,scoreRight,rndnumsRight)
+        //         this.savescorelocally(nameRight,rateRight,fracRight,indepRight,scoreRight,rndnumsRight)
+        //     }
             
-            //End game and go to highscore screen
-            this.endgame();
-        }           
+        //     //End game and go to highscore screen
+        //     this.endgame();
+        // }           
     },
     
     savescore: function (name,rate,frac,indep,score,nums) {
