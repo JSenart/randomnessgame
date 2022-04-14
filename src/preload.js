@@ -10,7 +10,7 @@ preload.prototype = {
         this.load.setPreloadSprite(loadingBar);
         
         //Load graphics - Title screen
-		this.game.load.image("gametitle","assets/startsplash_" + lng + ".png"); //Startup splash screen
+		this.game.load.image("gametitle","assets/startsplash_pr.png"); //Startup splash screen
         this.game.load.image("singleselect","assets/singleplayer_select_" + lng + ".png"); //Menu item for single player
         this.game.load.image("dualselect","assets/dualplayer_select_" + lng + ".png"); //Menu item for dual player
         this.game.load.image("banana","assets/banana.png"); //A banana...
